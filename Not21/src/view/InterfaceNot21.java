@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,64 +25,99 @@ import controller.Not21Control;
 public class InterfaceNot21 extends JFrame {
 
 
-	public InterfaceNot21() {
+	public InterfaceNot21(Not21Control control) {
 		initComponents();
 		
-		
-
-
+		lbConectar.addMouseListener(new ConexaoListener(control));
+		lbDesconectar.addMouseListener(new DesconexaoListener(control));
+		lbReiniciar.addMouseListener(new ReiniciarListener(control));
+		lbIiciar.addMouseListener(new NovoJogoListener(control));
 	}
 	
-    public class ConexaoListener implements ActionListener {
+    public class ConexaoListener implements MouseListener {
         private Not21Control control;
         
         public ConexaoListener(Not21Control control) {
             this.control = control;
         }
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	control.conectar();
-        }
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+	    	control.conectar();			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
     }
     
-    public class DesconexaoListener implements ActionListener {
+    public class DesconexaoListener implements MouseListener {
     	private Not21Control control;
         
         public DesconexaoListener(Not21Control control) {
             this.control = control;
         }
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	control.desconectar();
-        }
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {	
+	    	control.desconectar();
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
     }
     
-    public class NovoJogoListener implements ActionListener {
+    public class NovoJogoListener implements MouseListener {
     	private Not21Control control;
         
         public NovoJogoListener(Not21Control control) {
             this.control = control;
         }
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	control.iniciarPartida();
-        }
+
+		public void mouseClicked(MouseEvent arg0) {	
+	       	control.iniciarPartida();
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
      }
     
-    public class ReiniciarListener implements ActionListener {
+    public class ReiniciarListener implements MouseListener {
     	private Not21Control control;
         
         public ReiniciarListener(Not21Control control) {
             this.control = control;
         }
         
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	control.reiniciar();
-        }
+		public void mouseClicked(MouseEvent arg0) {	
+	    	control.reiniciar();
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
     }
 	
 	private CardLayout thisLayout;
@@ -94,10 +130,10 @@ public class InterfaceNot21 extends JFrame {
 	private JLabel lblC3J2;
 	private JLabel lblJogador;
 	private JLabel lblJogador_1;
-	private JLabel btnReiniciar;
-	private JLabel btnDesconectar;
-	private JLabel btnConectar;
-	private JLabel btnIiciar;
+	private JLabel lbReiniciar;
+	private JLabel lbDesconectar;
+	private JLabel lbConectar;
+	private JLabel lbIiciar;
 	private JButton btnRegas;
 	private JButton btnNovaMao;
 	private JButton btnParar;	
@@ -113,32 +149,32 @@ public class InterfaceNot21 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		btnReiniciar = new JLabel("Reiniciar");	
-		btnReiniciar.setHorizontalAlignment(SwingConstants.CENTER);
-		btnReiniciar.setForeground(Color.WHITE);
-		btnReiniciar.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnReiniciar.setBounds(559, 555, 63, 84);
-		contentPane.add(btnReiniciar);
+		lbReiniciar = new JLabel("Reiniciar");	
+		lbReiniciar.setHorizontalAlignment(SwingConstants.CENTER);
+		lbReiniciar.setForeground(Color.WHITE);
+		lbReiniciar.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lbReiniciar.setBounds(559, 555, 63, 84);
+		contentPane.add(lbReiniciar);
 
-		btnDesconectar = new JLabel("Desconectar");		
-		btnDesconectar.setHorizontalAlignment(SwingConstants.CENTER);
-		btnDesconectar.setForeground(Color.WHITE);
-		btnDesconectar.setFont(new Font("Agency FB", Font.PLAIN, 12));
-		btnDesconectar.setBounds(648, 541, 74, 98);
-		contentPane.add(btnDesconectar);
+		lbDesconectar = new JLabel("Desconectar");		
+		lbDesconectar.setHorizontalAlignment(SwingConstants.CENTER);
+		lbDesconectar.setForeground(Color.WHITE);
+		lbDesconectar.setFont(new Font("Agency FB", Font.PLAIN, 12));
+		lbDesconectar.setBounds(648, 541, 74, 98);
+		contentPane.add(lbDesconectar);
 
-		btnConectar = new JLabel("Conectar");
-		btnConectar.setHorizontalAlignment(SwingConstants.CENTER);
-		btnConectar.setForeground(Color.WHITE);
-		btnConectar.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnConectar.setBounds(391, 555, 74, 84);
-		contentPane.add(btnConectar);
+		lbConectar = new JLabel("Conectar");
+		lbConectar.setHorizontalAlignment(SwingConstants.CENTER);
+		lbConectar.setForeground(Color.WHITE);
+		lbConectar.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lbConectar.setBounds(391, 555, 74, 84);
+		contentPane.add(lbConectar);
 
-		btnIiciar = new JLabel("    Iniciar");		
-		btnIiciar.setForeground(Color.WHITE);
-		btnIiciar.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		btnIiciar.setBounds(475, 551, 74, 92);
-		contentPane.add(btnIiciar);
+		lbIiciar = new JLabel("    Iniciar");		
+		lbIiciar.setForeground(Color.WHITE);
+		lbIiciar.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lbIiciar.setBounds(475, 551, 74, 92);
+		contentPane.add(lbIiciar);
 		
 		JLabel label = new JLabel("");
 		label.setForeground(Color.BLACK);
@@ -337,7 +373,14 @@ public class InterfaceNot21 extends JFrame {
 		
 	}
 
+	public void setNomeJogador1(String nome) {
+		lblJogador.setText("Jogador " + nome);
+	}
 
+	public void setNomeJogador2(String nome) {
+		lblJogador_1.setText("Jogador " + nome);
+	}
+	
 	
 //	public void habilitaDesabilitaBotoes() {
 //		boolean minhaVez = this.controle.ehMinhaVez();

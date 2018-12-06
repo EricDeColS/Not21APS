@@ -30,7 +30,27 @@ public class Not21Control {
 	}
 	
 	public void iniciarNovaPartida(boolean comecoJogando) {
-		System.out.println("Iniciando paritda");
+		String nomeAdversario = atorRede.obterNomeAdversario(idJogador);
+		
+		if (comecoJogando) {
+			mesa.criaJogador1(idJogador);
+			mesa.criaJogador2(nomeAdversario);
+			
+			interfaceNot21.setNomeJogador1(idJogador);
+			interfaceNot21.setNomeJogador2(nomeAdversario);
+			
+			JOptionPane.showMessageDialog(interfaceNot21, "Você começa jogando.");
+		} else {
+			mesa.criaJogador1(nomeAdversario);
+			mesa.criaJogador2(idJogador);
+			
+			interfaceNot21.setNomeJogador1(nomeAdversario);
+			interfaceNot21.setNomeJogador2(idJogador);
+			
+			JOptionPane.showMessageDialog(interfaceNot21, "O adversário começa jogando.");
+		}
+		
+		mesa.setEmAndamento(true);		
 	}
 	
 	public void receberJogada(Estado estado) {
@@ -42,25 +62,23 @@ public class Not21Control {
 	}
 	
     private void go() {
-		this.interfaceNot21 = new InterfaceNot21();
+		this.interfaceNot21 = new InterfaceNot21(this);
 		this.idJogador = JOptionPane.showInputDialog(interfaceNot21, "Escolha o nome do participante:");
 		
 		interfaceNot21.setVisible(true);
 	}
     
 	public void conectar() {
-		// TODO Auto-generated method stub
-		
+		atorRede.conectar(idJogador);	
+		JOptionPane.showMessageDialog(interfaceNot21, "Você está conectado");
 	}
 
 	public void desconectar() {
-		// TODO Auto-generated method stub
-		
+		atorRede.desconectar();
 	}
 
 	public void iniciarPartida() {
-		// TODO Auto-generated method stub
-		
+		atorRede.iniciarPartidaRede();		
 	}
 
 	public void reiniciar() {
