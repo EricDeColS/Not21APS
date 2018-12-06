@@ -388,39 +388,8 @@ public class InterfaceNot21 extends JFrame {
 //		btnParar.setEnabled(minhaVez);
 //	}
 //
-//	public void mostraMensagem(String msg) {
-//		showMessageDialog(this, msg);
-//	}
-//
-//	public String getNomeDoJogador(int numero) {
-//		return showInputDialog(this, "Digite o nome do jogador " + numero + ": ", "NOT 21");
-//	}
-//
-//	public void iniciarPartidaRede(int nrJogadores) {
-//		this.controle.iniciarPartidaRede(nrJogadores);
-//	}
-//
-//	public void confirmaSaida() {
-//		
-//		int result = showConfirmDialog(this, "Deseja mesmo sair?");
-//		if (result == 0)
-//			this.controle.sair();
-//	}
-//
-//	public void mostraTelaInicial() {
-//		thisLayout.show(getContentPane(), "");
-//	}
-//
-//	public void conectar() {
-//		String nick = showInputDialog(this, "Digite seu nome: ");
-//		String servidor = "localhost";
-//		this.controle.conectar(nick, servidor);
-//	}
-//
-//	public void desconectar() {
-//		this.controle.desconectar();
-//	}
-//
+
+
 //	public void sincronizaMesa(Mesa mesa) {
 //		contentPane.removeAll();
 //		thisLayout.show(getContentPane(), PAINEL_JOGO);
@@ -431,21 +400,6 @@ public class InterfaceNot21 extends JFrame {
 //		System.gc();
 //		habilitaDesabilitaBotoes();
 //		
-//	}
-//
-//	public void criar(Jogador jogador) {
-//
-//		if (jogador.getNumero() == 1) {
-//			this.jogador1 = jogador;
-//			nome = jogador1.getNome();
-//			lblJogador.setText(nome);
-//		}
-//		if (jogador.getNumero() == 2) {
-//			this.jogador2 = jogador;
-//			nome = jogador2.getNome();
-//			lblJogador_1.setText(nome);
-//		}
-//		contentPane.repaint();
 //	}
 //
 //	public void atualizaMaoJ1() {
@@ -487,23 +441,21 @@ public class InterfaceNot21 extends JFrame {
 //	}
 //
 //
-//	public void mostraRegras() {
-//
-//		String regras = ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not 21:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"
-//				+ "� um jogo de cartas onde vencedor � definido quando aquele de entre\n"
-//				+ "2 jogadores,mais se aproximarem de um m�ltiplo de 21 sem atingir o\n"
-//				+ "n�mero e em at� 5 compras de cartas.\n"
-//				+ "Um baralho de 4 naipes contendo 52 cartas, tendo cada carta do naipe\n"
-//				+ "um valor de 1 a 13 � embaralhado e 3 cartas s�o distribu�das para cada\n"
-//				+ "jogador. As duas primeiras cartas sacadas somar�o seus valores,\n"
-//				+ "enquanto a terceira diminuir� seu valor. Se o valor resultante desta\n"
-//				+ "equa��o for satisfat�rio o jogador poder� n�o efetuar mais saques mas\n"
-//				+ "seu oponente sim, respeitando o limite m�ximo de 5 saques. Quando todos\n"
-//				+ "os jogadores param � determinado um vencedor\n"
-//				+ "No caso de um empate o resultado ser� decidido verificando quem possui\n" + "a m�o de maior valor.";
-//
-//		mostraMensagem(regras);
-//	}
+	public void mostraRegras() {
+
+		String regras = ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not 21:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"
+				+ "� um jogo de cartas onde vencedor � definido quando aquele de entre\n"
+				+ "2 jogadores,mais se aproximarem de um m�ltiplo de 21 sem atingir o\n"
+				+ "n�mero e em at� 5 compras de cartas.\n"
+				+ "Um baralho de 4 naipes contendo 52 cartas, tendo cada carta do naipe\n"
+				+ "um valor de 1 a 13 � embaralhado e 3 cartas s�o distribu�das para cada\n"
+				+ "jogador. As duas primeiras cartas sacadas somar�o seus valores,\n"
+				+ "enquanto a terceira diminuir� seu valor. Se o valor resultante desta\n"
+				+ "equa��o for satisfat�rio o jogador poder� n�o efetuar mais saques mas\n"
+				+ "seu oponente sim, respeitando o limite m�ximo de 5 saques. Quando todos\n"
+				+ "os jogadores param � determinado um vencedor\n"
+				+ "No caso de um empate o resultado ser� decidido verificando quem possui\n" + "a m�o de maior valor.";
+	}
 //
 //	public void pegarCartaAction() {
 //		if (JOGO_EM_REDE)
