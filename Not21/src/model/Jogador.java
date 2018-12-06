@@ -13,8 +13,6 @@ public class Jogador implements Jogada{
 
 	protected Mao mao;
 
-	/*protected Mesa mesa;*/
-	
 	protected int nRodads;
 	
 	protected int pediu;
@@ -31,14 +29,6 @@ public class Jogador implements Jogada{
 		this.nRodads = nRodads;
 	}
 
-	/*public Jogador(String nome, int numero, Mesa mesa) {
-		this.nome = nome;
-		this.numero = numero;
-		this.mesa = mesa;
-		this.mao = new Mao();
-		this.nRodads = 0;
-		this.pediu = 0;
-	}*/
 	public Jogador(String nome, int numero) {
 		this.nome = nome;
 		this.numero = numero;
@@ -50,7 +40,6 @@ public class Jogador implements Jogada{
 	public Carta[] getMan() {
 		return mao.getManeta();
 	}
-	
 	
 
 	public void limparMao() {

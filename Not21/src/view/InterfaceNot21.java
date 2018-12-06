@@ -5,9 +5,6 @@ import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -21,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import controller.Not21Control;
+import model.Carta;
 
 public class InterfaceNot21 extends JFrame {
 
@@ -120,7 +118,7 @@ public class InterfaceNot21 extends JFrame {
 		public void mouseReleased(MouseEvent arg0) {}
     }
 	
-	private CardLayout thisLayout;
+	//private CardLayout thisLayout;
 	private JPanel contentPane;
 	private JLabel lblC1J1;
 	private JLabel lblC2J1;
@@ -136,9 +134,15 @@ public class InterfaceNot21 extends JFrame {
 	private JLabel lbIiciar;
 	private JButton btnRegas;
 	private JButton btnNovaMao;
-	private JButton btnParar;	
+	private JButton btnParar;
+	private JLabel lblValorDaMo; 
+	private JLabel lblDistanciaDoMultiplo;
+	private JLabel lblValMaoJ1; //valor da mão de jogador 1
+	private JLabel lblValMaoJ2; //valor da mão do jogador 2
+	private JLabel distMultiJ2; //distancia do multiplo do jogador 2
+	private JLabel distMultiJ1; //distancia do multiplo do jogador 1
 	
-
+	
 	private void initComponents() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -290,6 +294,11 @@ public class InterfaceNot21 extends JFrame {
 		lblDeckJogador.setBounds(451, 11, 199, 290);
 		contentPane.add(lblDeckJogador);
 
+		
+		
+		/**** PEDE NOVA MAO ****/
+		
+		
 		btnNovaMao = new JButton("Nova M\u00E3o");
 		btnNovaMao.setBorder(null);
 		btnNovaMao.setBounds(451, 312, 199, 23);
@@ -297,6 +306,12 @@ public class InterfaceNot21 extends JFrame {
 		btnNovaMao.setBackground(SystemColor.text);
 		btnNovaMao.setFont(new Font("Agency FB", Font.PLAIN, 18));
 
+		
+		
+		/**** PARA DE JOGAR ****/
+		
+		
+		
 		btnParar = new JButton("Parar");
 		btnParar.setBorder(null);
 		btnParar.setBounds(451, 348, 199, 23);
@@ -304,13 +319,13 @@ public class InterfaceNot21 extends JFrame {
 		btnParar.setBackground(SystemColor.text);
 		btnParar.setFont(new Font("Agency FB", Font.PLAIN, 18));
 
-		JLabel lblValorDaMo = new JLabel("Valor da M\u00E3o");
+		lblValorDaMo = new JLabel("Valor da M\u00E3o");
 		lblValorDaMo.setFont(new Font("Agency FB", Font.PLAIN, 22));
 		lblValorDaMo.setForeground(Color.WHITE);
 		lblValorDaMo.setBounds(10, 382, 113, 40);
 		contentPane.add(lblValorDaMo);
 
-		JLabel lblDistanciaDoMultiplo = new JLabel("Distancia do Multiplo");
+		lblDistanciaDoMultiplo = new JLabel("Distancia do Multiplo");
 		lblDistanciaDoMultiplo.setFont(new Font("Agency FB", Font.PLAIN, 22));
 		lblDistanciaDoMultiplo.setForeground(Color.WHITE);
 		lblDistanciaDoMultiplo.setBounds(10, 416, 157, 40);
@@ -328,25 +343,25 @@ public class InterfaceNot21 extends JFrame {
 		label_3.setBounds(898, 428, 171, 40);
 		contentPane.add(label_3);
 
-		JLabel lblValMaoJ1 = new JLabel("");
+		lblValMaoJ1 = new JLabel("");
 		lblValMaoJ1.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		lblValMaoJ1.setForeground(Color.WHITE);
 		lblValMaoJ1.setBounds(117, 394, 46, 23);
 		contentPane.add(lblValMaoJ1);
 
-		JLabel lblValMaoJ2 = new JLabel("");
+		lblValMaoJ2 = new JLabel("");
 		lblValMaoJ2.setForeground(Color.WHITE);
 		lblValMaoJ2.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		lblValMaoJ2.setBounds(1009, 404, 46, 23);
 		contentPane.add(lblValMaoJ2);
 
-		JLabel distMultiJ2 = new JLabel("");
+		distMultiJ2 = new JLabel("");
 		distMultiJ2.setForeground(Color.WHITE);
 		distMultiJ2.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		distMultiJ2.setBounds(1057, 441, 46, 23);
 		contentPane.add(distMultiJ2);
 
-		JLabel distMultiJ1 = new JLabel("");
+		distMultiJ1 = new JLabel("");
 		distMultiJ1.setForeground(Color.WHITE);
 		distMultiJ1.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		distMultiJ1.setBounds(160, 428, 46, 23);
@@ -381,6 +396,35 @@ public class InterfaceNot21 extends JFrame {
 		lblJogador_1.setText("Jogador " + nome);
 	}
 	
+	public void setValorMaoJ1(int valor) {
+		lblValMaoJ1.setText(valor+"");
+	}
+	public void setValorMaoJ2(int valor) {
+		lblValMaoJ2.setText(valor+"");
+	}
+	
+	public void setDistMultiploJ1(int valor) {
+		distMultiJ1.setText(valor+"");
+	}
+	public void setDistMultiploJ2(int valor) {
+		distMultiJ2.setText(valor+"");
+	}
+	
+	public void setMaoJ1Panel(String[] mao) {
+		String[] temp = mao;
+		
+		lblC1J1.setIcon(new ImageIcon("imagens/"+temp[0]+".jpg"));
+		lblC2J1.setIcon(new ImageIcon("imagens/"+temp[1]+".jpg"));
+		lblC3J1.setIcon(new ImageIcon("imagens/"+temp[2]+".jpg"));
+		repaint();
+	}
+	public void setMaoJ2Panel(String[] cartas) {
+		String[] temp = cartas;
+		lblC1J2.setIcon(new ImageIcon("imagens/"+temp[0]+".jpg"));
+		lblC2J2.setIcon(new ImageIcon("imagens/"+temp[1]+".jpg"));
+		lblC3J2.setIcon(new ImageIcon("imagens/"+temp[2]+".jpg"));
+		repaint();
+	}
 	
 //	public void habilitaDesabilitaBotoes() {
 //		boolean minhaVez = this.controle.ehMinhaVez();
@@ -402,45 +446,8 @@ public class InterfaceNot21 extends JFrame {
 //		
 //	}
 //
-//	public void atualizaMaoJ1() {
-//
-//		String[] temp = new String[3];
-//
-//		Carta[] aux = new Carta[3];
-//
-//		aux = jogador1.getMan();
-//		temp[0] = aux[0].toString();
-//		temp[1] = aux[1].toString();
-//		temp[2] = aux[2].toString();
-//
-//		String C1 = temp[0];
-//		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C1));
-//		String C2 = temp[1];
-//		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C2));
-//		String C3 = temp[2];
-//		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C3));
-//	}
-//
-//	public void atualizaMaoJ2() {
-//		String[] temp = new String[3];
-//
-//		Carta[] aux = new Carta[3];
-//
-//		aux = jogador2.getMan();
-//		temp[0] = aux[0].toString();
-//		temp[1] = aux[1].toString();
-//		temp[2] = aux[2].toString();
-//
-//		String C1 = temp[0];
-//		lblC1J2.setIcon(new ImageIcon("imagens/%s.jpg", C1));
-//		String C2 = temp[1];
-//		lblC2J2.setIcon(new ImageIcon("imagens/%s.jpg", C2));
-//		String C3 = temp[2];
-//		lblC3J2.setIcon(new ImageIcon("imagens/%s.jpg", C3));
-//		contentPane.repaint();
-//	}
-//
-//
+
+
 	public void mostraRegras() {
 
 		String regras = ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not 21:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"

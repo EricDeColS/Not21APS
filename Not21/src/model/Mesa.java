@@ -24,6 +24,14 @@ public class Mesa implements Jogada {
 
 	}
 
+	public Jogador getJogador1() {
+		return jogador1;
+	}
+	
+	public Jogador getJogador2() {
+		return jogador2;
+	}
+	
 	public Jogador getJogador(String nome) {
 		return jogador1.getNome().equals(nome) ? jogador1 : jogador2;
 	}
@@ -47,10 +55,9 @@ public class Mesa implements Jogada {
 	}
 	
 	//	teste para pegar carta do baralho
-	public String getCartaDoBaralho() {
-		Carta carta = getBaralho().getCartaTopo(); //jogadorAtual.  //mesa.getBaralho().getCartaTopo();
-		jogadorAtual.mao.adicionaCarta(carta);
-		return String.format("%s pega a carta %s!", jogadorAtual.nome, carta);
+	public void getCartaDoBaralho(Jogador jogador) {
+		Carta carta = getBaralho().getCartaTopo(); 
+		jogador.mao.adicionaCarta(carta);
 	}
 	
 	
