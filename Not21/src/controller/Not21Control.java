@@ -47,6 +47,26 @@ public class Not21Control {
 		
 		interfaceNot21.setVisible(true);
 	}
+    
+	public void conectar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void desconectar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void iniciarPartida() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void reiniciar() {
+		// TODO Auto-generated method stub
+		
+	}
 
 //	public void novoJogo() {
 //		this.mesa.limpaJogadores();
@@ -229,6 +249,10 @@ public class Not21Control {
 	public void sair() {
 		System.exit(0);
 	}
+
+
+
+
 
 
 
