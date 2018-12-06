@@ -1,53 +1,43 @@
-/**
- * 
- */
 package controller;
 
+import java.awt.Component;
 import java.util.List;
 
 import model.JogadaN21;
 import model.Jogador;
 import model.Mesa;
 import net.AtorNetGames;
+import net.Estado;
+import view.InterfaceNot21;
 
 public class Not21Control {
-
-	protected Not21ViewControl viewControl;
-
+	
 	protected Mesa mesa;
-
 	protected AtorNetGames atorRede;
+	protected InterfaceNot21 viewControl;
 
 	public Not21Control() {
-		this.viewControl = new Not21ViewControl(this);
-		this.atorRede = new AtorNetGames(this, this.viewControl.getView());
+		this.viewControl = new InterfaceNot21();
+		this.atorRede = new AtorNetGames(this);
 		this.mesa = new Mesa();
 	}
-
-	public Not21ViewControl getViewControl() {
+	
+	public InterfaceNot21 getInterface() {
 		return viewControl;
 	}
-
-	public void setViewControl(Not21ViewControl viewControl) {
-		this.viewControl = viewControl;
+	
+	public void iniciarNovaPartida(boolean comecoJogando) {
+		System.out.println("Iniciando paritda");
 	}
-
-	public Mesa getMesa() {
-		return mesa;
+	
+	public void receberJogada(Estado estado) {
+		System.out.println("Recebendo jogada");		
 	}
-
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
-	}
-
-	public AtorNetGames getAtorRede() {
-		return atorRede;
-	}
-
-	public void setAtorRede(AtorNetGames atorRede) {
-		this.atorRede = atorRede;
-	}
-
+	
+	
+	
+	
+	
 	public void novoJogo() {
 		this.mesa.limpaJogadores();
 		int numeroJogadores = 2;
@@ -71,7 +61,10 @@ public class Not21Control {
 		this.viewControl.atualizaMaoJogadores();
 		procederJogada(null);
 	}
+	
+	
 
+	
 	public void iniciaJogo() {
 		this.viewControl.exibeTelaInicial();
 	}
@@ -226,5 +219,7 @@ public class Not21Control {
 	public void sair() {
 		System.exit(0);
 	}
+
+
 
 }

@@ -1,12 +1,5 @@
 package view;
 
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
-import static javax.swing.JOptionPane.QUESTION_MESSAGE;
-import static javax.swing.JOptionPane.YES_NO_OPTION;
-import static javax.swing.JOptionPane.showConfirmDialog;
-import static javax.swing.JOptionPane.showInputDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
@@ -26,55 +19,17 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import controller.Not21ViewControl;
-import model.Carta;
-import model.JogadaN21;
-import model.Jogador;
-import model.Mesa;
-import net.AtorNetGames;
 
 public class InterfaceNot21 extends JFrame {
 
-	private static boolean JOGO_EM_REDE = false;
 
-	AtorNetGames atorRede;
-	Mesa mesa;
-	private Not21ViewControl controle;
-	private String nome = "";
-	private CardLayout thisLayout;
-	private JPanel contentPane;
-	private Jogador jogador1;
-	private Jogador jogador2;
-	private JButton btnNovaMao;
-	private JButton btnParar;
-	private JLabel lblC1J1;
-	private JLabel lblC2J1;
-	private JLabel lblC3J1;
-	private JLabel lblC1J2;
-	private JLabel lblC2J2;
-	private JLabel lblC3J2;
-	private JLabel lblJogador;
-	private JLabel lblJogador_1;
-
-	public final int INFORMACAO = INFORMATION_MESSAGE;
-	public final String TITULO_JANELA = "NOT21";
-
-	private final String PAINEL_JOGO = null;
-
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
-	public InterfaceNot21(Not21ViewControl controle) {
+	public InterfaceNot21() {
 		super();
 
-		this.controle = controle;
-		// atorRede = new AtorNetGames(controle, this);
-		mesa = new Mesa();
+		initComponents();
+	}
 
+	private void initComponents() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(70, 25, 1118, 700);
@@ -101,7 +56,7 @@ public class InterfaceNot21 extends JFrame {
 		btnDesconectar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				desconectar();
+//				desconectar();
 			}
 		});
 
@@ -222,7 +177,7 @@ public class InterfaceNot21 extends JFrame {
 				// nome = JOptionPane.showInputDialog(null, "Escolha o nome do participante");
 				// atorRede.conectar(nome, "localhost");
 				// InterfaceNot21.this.atorRede.iniciarPartidaRede();
-				conectar();
+//				conectar();
 
 			}
 		});
@@ -237,7 +192,7 @@ public class InterfaceNot21 extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				int nrJogadores = 2;
-				iniciarPartidaRede(nrJogadores);
+//				iniciarPartidaRede(nrJogadores);
 
 			}
 		});
@@ -258,11 +213,6 @@ public class InterfaceNot21 extends JFrame {
 
 		btnNovaMao = new JButton("Nova M\u00E3o");
 		btnNovaMao.setBorder(null);
-		btnNovaMao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-			}
-		});
 		btnNovaMao.setBounds(451, 312, 199, 23);
 		contentPane.add(btnNovaMao);
 		btnNovaMao.setBackground(SystemColor.text);
@@ -270,16 +220,6 @@ public class InterfaceNot21 extends JFrame {
 
 		btnParar = new JButton("Parar");
 		btnParar.setBorder(null);
-		btnParar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		btnParar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-			}
-		});
 		btnParar.setBounds(451, 348, 199, 23);
 		contentPane.add(btnParar);
 		btnParar.setBackground(SystemColor.text);
@@ -349,156 +289,164 @@ public class InterfaceNot21 extends JFrame {
 		btnRegas.setForeground(Color.WHITE);
 		btnRegas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mostraRegras();
+//				mostraRegras();
 			}
 		});
 		btnRegas.setFont(new Font("Agency FB", Font.PLAIN, 18));
 		btnRegas.setBackground(new Color(34, 139, 34));
 		btnRegas.setBounds(10, 602, 74, 48);
 		contentPane.add(btnRegas);
-	}
-
-	public void habilitaDesabilitaBotoes() {
-		boolean minhaVez = this.controle.ehMinhaVez();
-		btnNovaMao.setEnabled(minhaVez);
-		btnParar.setEnabled(minhaVez);
-	}
-
-	public void mostraMensagem(String msg) {
-		this.mostraMensagem(msg, INFORMACAO);
-	}
-
-	private void mostraMensagem(String msg, int tipoMensagem) {
-		showMessageDialog(this, msg, TITULO_JANELA, tipoMensagem);
-	}
-
-	public String getNomeDoJogador(int numero) {
-		return showInputDialog(this, "Digite o nome do jogador " + numero + ": ", TITULO_JANELA, QUESTION_MESSAGE);
-	}
-
-	public void iniciarPartidaRede(int nrJogadores) {
-		this.controle.iniciarPartidaRede(nrJogadores);
-	}
-
-	public void confirmaSaida() {
-		int result = showConfirmDialog(this, "Deseja mesmo sair?", TITULO_JANELA, YES_NO_OPTION);
-		if (result == 0)
-			this.controle.sair();
-	}
-
-	public void mostraTelaInicial() {
-		thisLayout.show(getContentPane(), "");
-	}
-
-	public void conectar() {
-		String nick = showInputDialog(this, "Digite seu nome: ", TITULO_JANELA, QUESTION_MESSAGE);
-		String servidor = "localhost";
-		this.controle.conectar(nick, servidor);
-	}
-
-	public void desconectar() {
-		this.controle.desconectar();
-	}
-
-	public void sincronizaMesa(Mesa mesa) {
-		contentPane.removeAll();
-		thisLayout.show(getContentPane(), PAINEL_JOGO);
-		for (Jogador jogador : mesa.getJogadores()) {
-			criar(jogador);
-		}
-		contentPane.repaint();
-		System.gc();
-		habilitaDesabilitaBotoes();
 		
 	}
 
-	public void criar(Jogador jogador) {
-
-		if (jogador.getNumero() == 1) {
-			this.jogador1 = jogador;
-			nome = jogador1.getNome();
-			lblJogador.setText(nome);
-		}
-		if (jogador.getNumero() == 2) {
-			this.jogador2 = jogador;
-			nome = jogador2.getNome();
-			lblJogador_1.setText(nome);
-		}
-		contentPane.repaint();
-	}
-
-	public void atualizaMaoJ1() {
-
-		String[] temp = new String[3];
-
-		Carta[] aux = new Carta[3];
-
-		aux = jogador1.getMan();
-		temp[0] = aux[0].toString();
-		temp[1] = aux[1].toString();
-		temp[2] = aux[2].toString();
-
-		String C1 = temp[0];
-		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C1));
-		String C2 = temp[1];
-		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C2));
-		String C3 = temp[2];
-		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C3));
-	}
-
-	public void atualizaMaoJ2() {
-		String[] temp = new String[3];
-
-		Carta[] aux = new Carta[3];
-
-		aux = jogador2.getMan();
-		temp[0] = aux[0].toString();
-		temp[1] = aux[1].toString();
-		temp[2] = aux[2].toString();
-
-		String C1 = temp[0];
-		lblC1J2.setIcon(new ImageIcon("imagens/%s.jpg", C1));
-		String C2 = temp[1];
-		lblC2J2.setIcon(new ImageIcon("imagens/%s.jpg", C2));
-		String C3 = temp[2];
-		lblC3J2.setIcon(new ImageIcon("imagens/%s.jpg", C3));
-		contentPane.repaint();
-	}
-
-	public void enviaJogadaRede(JogadaN21 jogada) {
-		this.controle.enviaJogadaRede(jogada);
-	}
-
-	public void mostraRegras() {
-
-		String regras = ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not 21:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"
-				+ "� um jogo de cartas onde vencedor � definido quando aquele de entre\n"
-				+ "2 jogadores,mais se aproximarem de um m�ltiplo de 21 sem atingir o\n"
-				+ "n�mero e em at� 5 compras de cartas.\n"
-				+ "Um baralho de 4 naipes contendo 52 cartas, tendo cada carta do naipe\n"
-				+ "um valor de 1 a 13 � embaralhado e 3 cartas s�o distribu�das para cada\n"
-				+ "jogador. As duas primeiras cartas sacadas somar�o seus valores,\n"
-				+ "enquanto a terceira diminuir� seu valor. Se o valor resultante desta\n"
-				+ "equa��o for satisfat�rio o jogador poder� n�o efetuar mais saques mas\n"
-				+ "seu oponente sim, respeitando o limite m�ximo de 5 saques. Quando todos\n"
-				+ "os jogadores param � determinado um vencedor\n"
-				+ "No caso de um empate o resultado ser� decidido verificando quem possui\n" + "a m�o de maior valor.";
-
-		mostraMensagem(regras);
-	}
-
-	public void pegarCartaAction() {
-		if (JOGO_EM_REDE)
-			enviaJogadaRede(JogadaN21.PEDIR);
-
-		this.controle.procederLance(JogadaN21.PEDIR);
-	}
-
-	public void passarAVezAction() {
-		if (JOGO_EM_REDE)
-			enviaJogadaRede(JogadaN21.PARAR);
-
-		this.controle.procederLance(JogadaN21.PARAR);
-	}
+	private CardLayout thisLayout;
+	private JPanel contentPane;
+	private JButton btnNovaMao;
+	private JButton btnParar;
+	private JLabel lblC1J1;
+	private JLabel lblC2J1;
+	private JLabel lblC3J1;
+	private JLabel lblC1J2;
+	private JLabel lblC2J2;
+	private JLabel lblC3J2;
+	private JLabel lblJogador;
+	private JLabel lblJogador_1;
+	
+//	public void habilitaDesabilitaBotoes() {
+//		boolean minhaVez = this.controle.ehMinhaVez();
+//		btnNovaMao.setEnabled(minhaVez);
+//		btnParar.setEnabled(minhaVez);
+//	}
+//
+//	public void mostraMensagem(String msg) {
+//		showMessageDialog(this, msg);
+//	}
+//
+//	public String getNomeDoJogador(int numero) {
+//		return showInputDialog(this, "Digite o nome do jogador " + numero + ": ", "NOT 21");
+//	}
+//
+//	public void iniciarPartidaRede(int nrJogadores) {
+//		this.controle.iniciarPartidaRede(nrJogadores);
+//	}
+//
+//	public void confirmaSaida() {
+//		
+//		int result = showConfirmDialog(this, "Deseja mesmo sair?");
+//		if (result == 0)
+//			this.controle.sair();
+//	}
+//
+//	public void mostraTelaInicial() {
+//		thisLayout.show(getContentPane(), "");
+//	}
+//
+//	public void conectar() {
+//		String nick = showInputDialog(this, "Digite seu nome: ");
+//		String servidor = "localhost";
+//		this.controle.conectar(nick, servidor);
+//	}
+//
+//	public void desconectar() {
+//		this.controle.desconectar();
+//	}
+//
+//	public void sincronizaMesa(Mesa mesa) {
+//		contentPane.removeAll();
+//		thisLayout.show(getContentPane(), PAINEL_JOGO);
+//		for (Jogador jogador : mesa.getJogadores()) {
+//			criar(jogador);
+//		}
+//		contentPane.repaint();
+//		System.gc();
+//		habilitaDesabilitaBotoes();
+//		
+//	}
+//
+//	public void criar(Jogador jogador) {
+//
+//		if (jogador.getNumero() == 1) {
+//			this.jogador1 = jogador;
+//			nome = jogador1.getNome();
+//			lblJogador.setText(nome);
+//		}
+//		if (jogador.getNumero() == 2) {
+//			this.jogador2 = jogador;
+//			nome = jogador2.getNome();
+//			lblJogador_1.setText(nome);
+//		}
+//		contentPane.repaint();
+//	}
+//
+//	public void atualizaMaoJ1() {
+//
+//		String[] temp = new String[3];
+//
+//		Carta[] aux = new Carta[3];
+//
+//		aux = jogador1.getMan();
+//		temp[0] = aux[0].toString();
+//		temp[1] = aux[1].toString();
+//		temp[2] = aux[2].toString();
+//
+//		String C1 = temp[0];
+//		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C1));
+//		String C2 = temp[1];
+//		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C2));
+//		String C3 = temp[2];
+//		lblC2J1.setIcon(new ImageIcon("imagens/%s.jpg", C3));
+//	}
+//
+//	public void atualizaMaoJ2() {
+//		String[] temp = new String[3];
+//
+//		Carta[] aux = new Carta[3];
+//
+//		aux = jogador2.getMan();
+//		temp[0] = aux[0].toString();
+//		temp[1] = aux[1].toString();
+//		temp[2] = aux[2].toString();
+//
+//		String C1 = temp[0];
+//		lblC1J2.setIcon(new ImageIcon("imagens/%s.jpg", C1));
+//		String C2 = temp[1];
+//		lblC2J2.setIcon(new ImageIcon("imagens/%s.jpg", C2));
+//		String C3 = temp[2];
+//		lblC3J2.setIcon(new ImageIcon("imagens/%s.jpg", C3));
+//		contentPane.repaint();
+//	}
+//
+//
+//	public void mostraRegras() {
+//
+//		String regras = ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not 21:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"
+//				+ "� um jogo de cartas onde vencedor � definido quando aquele de entre\n"
+//				+ "2 jogadores,mais se aproximarem de um m�ltiplo de 21 sem atingir o\n"
+//				+ "n�mero e em at� 5 compras de cartas.\n"
+//				+ "Um baralho de 4 naipes contendo 52 cartas, tendo cada carta do naipe\n"
+//				+ "um valor de 1 a 13 � embaralhado e 3 cartas s�o distribu�das para cada\n"
+//				+ "jogador. As duas primeiras cartas sacadas somar�o seus valores,\n"
+//				+ "enquanto a terceira diminuir� seu valor. Se o valor resultante desta\n"
+//				+ "equa��o for satisfat�rio o jogador poder� n�o efetuar mais saques mas\n"
+//				+ "seu oponente sim, respeitando o limite m�ximo de 5 saques. Quando todos\n"
+//				+ "os jogadores param � determinado um vencedor\n"
+//				+ "No caso de um empate o resultado ser� decidido verificando quem possui\n" + "a m�o de maior valor.";
+//
+//		mostraMensagem(regras);
+//	}
+//
+//	public void pegarCartaAction() {
+//		if (JOGO_EM_REDE)
+//			enviaJogadaRede(JogadaN21.PEDIR);
+//
+//		this.controle.procederLance(JogadaN21.PEDIR);
+//	}
+//
+//	public void passarAVezAction() {
+//		if (JOGO_EM_REDE)
+//			enviaJogadaRede(JogadaN21.PARAR);
+//
+//		this.controle.procederLance(JogadaN21.PARAR);
+//	}
 
 }

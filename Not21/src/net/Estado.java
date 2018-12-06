@@ -5,12 +5,6 @@ import model.Mesa;
 
 public class Estado implements Jogada{
 
-	/**
-	 * 
-	 */
-	
-	
-	private static final long serialVersionUID = -4252433372278629075L;
 	
 	private Mesa mesa;
 	
