@@ -1,9 +1,7 @@
 package net;
 
-import java.util.List;
 
 import javax.swing.JOptionPane;
-
 import br.ufsc.inf.leobr.cliente.Jogada;
 import br.ufsc.inf.leobr.cliente.OuvidorProxy;
 import br.ufsc.inf.leobr.cliente.Proxy;
@@ -13,8 +11,6 @@ import br.ufsc.inf.leobr.cliente.exception.NaoConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
 import controller.Not21Control;
-import model.JogadaN21;
-import view.InterfaceNot21;
 
 public class AtorNetGames implements OuvidorProxy {
 	
