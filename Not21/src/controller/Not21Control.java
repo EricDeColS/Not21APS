@@ -37,7 +37,7 @@ public class Not21Control {
 			interfaceNot21.setNomeJogador1(idJogador);
 			interfaceNot21.setNomeJogador2(nomeAdversario);
 
-			JOptionPane.showMessageDialog(interfaceNot21, "Voc� come�a jogando.");
+			JOptionPane.showMessageDialog(interfaceNot21, idJogador + " começa jogando.");
 			habilitaBotoes();
 		} else {
 			mesa.criaJogador1(nomeAdversario);
@@ -45,9 +45,7 @@ public class Not21Control {
 
 			interfaceNot21.setNomeJogador1(nomeAdversario);
 			interfaceNot21.setNomeJogador2(idJogador);
-
-			// desabilitaBotoes();
-			JOptionPane.showMessageDialog(interfaceNot21, "O advers�rio come�a jogando.");
+			JOptionPane.showMessageDialog(interfaceNot21, nomeAdversario + " começa jogando.");
 		}
 
 		mesa.setEmAndamento();
@@ -66,7 +64,7 @@ public class Not21Control {
 
 	public void conectar() {
 		atorRede.conectar(idJogador);
-		JOptionPane.showMessageDialog(interfaceNot21, "Voc� est� conectado");
+		JOptionPane.showMessageDialog(interfaceNot21, "Você está conectado");
 	}
 
 	public void desconectar() {
@@ -94,14 +92,14 @@ public class Not21Control {
 	}
 
 	public void atualizaMaoJ2() {
-		if(mesa.getJogador2().getPediu()>=1) {
-		Carta[] aux = mesa.getJogador2().getMan();
-		String[] mao = new String[3];
-		mao[0] = aux[0].toString();
-		mao[1] = aux[1].toString();
-		mao[2] = aux[2].toString();
+		if (mesa.getJogador2().getPediu() >= 1) {
+			Carta[] aux = mesa.getJogador2().getMan();
+			String[] mao = new String[3];
+			mao[0] = aux[0].toString();
+			mao[1] = aux[1].toString();
+			mao[2] = aux[2].toString();
 
-		interfaceNot21.setMaoJ2Panel(mao);
+			interfaceNot21.setMaoJ2Panel(mao);
 		}
 	}
 
@@ -143,36 +141,50 @@ public class Not21Control {
 				jogador.distanciaMult();
 				sincronizaMesa();
 				mesa.passaVez();
+				if (mesa.condicaoVitoria())
+					JOptionPane.showMessageDialog(interfaceNot21, "O jogador " + mesa.getNomeGanhador() + " ganhou!");
+				;
 				Estado estado = new Estado(this.mesa);
 				atorRede.enviarJogada(estado);
-				JOptionPane.showMessageDialog(interfaceNot21, "voce pediu cartas com sucesso e enviou a jogada.");
+
 			} else {
 				JOptionPane.showMessageDialog(interfaceNot21, "Não é a sua vez.");
 			}
 
 		} else if (i == 1) {
+
 			if (jogador.getNome() == mesa.getJogadorAtual().getNome()) {
 				jogador.setParado();
 				mesa.passaVez();
 				Estado estado = new Estado(this.mesa);
 				mesa.condicaoVitoria();
 				atorRede.enviarJogada(estado);
-				JOptionPane.showMessageDialog(interfaceNot21, "Voce parou e mandou a jogada.");
+				JOptionPane.showMessageDialog(interfaceNot21, "Você está parado.");
+				if (mesa.condicaoVitoria())
+					JOptionPane.showMessageDialog(interfaceNot21, "O jogador " + mesa.getNomeGanhador() + " ganhou!");
+				;
 			} else {
 				JOptionPane.showMessageDialog(interfaceNot21, "Não é a sua vez.");
 			}
 		}
-		// JOptionPane.showMessageDialog(interfaceNot21, "Something's wrong charlie.");
 	}
 
 	public void receberJogada(Estado estado) {
-
+		if (mesa.condicaoVitoria())
+			JOptionPane.showMessageDialog(interfaceNot21, "O jogador " + mesa.getNomeGanhador() + " ganhou!");
 		Mesa mesa = estado.getMesa();
 		mesa.condicaoVitoria();
 		this.mesa = mesa;
 		sincronizaMesa();
-		habilitaBotoes();
-		JOptionPane.showMessageDialog(interfaceNot21, "Pode jogar");
+		Jogador jogador = mesa.getJogador(idJogador);
+			if (jogador.getNome() == mesa.getJogador(idJogador).getNome() && jogador.isParado()) {
+			mesa.passaVez();
+			;
+		}else {
+			habilitaBotoes();
+			if (mesa.condicaoVitoria())
+				JOptionPane.showMessageDialog(interfaceNot21, "Pode jogar");
+		}
 	}
 
 }

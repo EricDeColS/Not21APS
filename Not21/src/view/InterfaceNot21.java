@@ -518,7 +518,6 @@ public class InterfaceNot21 extends JFrame {
 
 	
 	
-	
 	public void mostraRegras() {
 
 		String regras = ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not 21:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"

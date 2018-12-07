@@ -83,21 +83,25 @@ public class Jogador implements Jogada {
 	public int distanciaMult() {
 
 		int pontos = this.getValorDaMao();
-		int aux = 0;
-		int temp = 0;
-		aux = pontos % 21;
-
-		if (aux != 0) {
-			temp = aux;
-			aux = aux - 21;
-			if (Math.abs(aux) < temp) {
-				return Math.abs(aux);
+		int aux = pontos % 21;
+		int temp = pontos % 21;
+		int result =0;
+		aux = 21-aux;
+		
+		if (pontos > 21) {
+			if (aux != 0) {
+				if (aux < temp) {
+					result= aux;
+				} else {
+					result= temp;
+				}
 			} else {
-				return temp;
+				result= 0;
 			}
 		} else {
-			return 0;
+			result = aux;
 		}
+		return result;
 	}
 
 	public void jogadorPediu() {

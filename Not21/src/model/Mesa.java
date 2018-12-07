@@ -136,13 +136,13 @@ public class Mesa implements Jogada {
 	
 	
 	public boolean condicaoVitoria() {
-		int pJ1 = jogador1.getPediu();
+		//int pJ1 = jogador1.getPediu();
 		boolean j1Parado = jogador1.isParado();
-		int pJ2 = jogador2.getPediu();
+		//int pJ2 = jogador2.getPediu();
 		boolean j2Parado = jogador2.isParado();
 		
-		if (pJ1 >= 5 && pJ2 >= 5 || pJ1 >= 5 && j2Parado == true || j1Parado == true && pJ2 >= 5
-				|| j1Parado == true && j2Parado == true) {
+		//if (pJ1 >= 5 && pJ2 >= 5 || pJ1 >= 5 && j2Parado == true || j1Parado == true && pJ2 >= 5
+			if( j1Parado == true && j2Parado == true) {
 			avaliaVencedor();
 			return true;
 		} else {
@@ -162,35 +162,5 @@ public class Mesa implements Jogada {
 		partidaEmAndamento = false;
 	}
 	
-//	public Jogador setPrimeiroJogadorAtual() {
-//	if (this.jogadorAtual == null)
-//		this.jogadorAtual = jogador1;
-//	return this.jogadorAtual;
-//}	
-//	public Carta[] getMaoj1() {
-//		Carta[] maoJ1= new Carta[3];
-//		jogador1.mao.getManeta();
-//		return maoJ1;
-//	}
-//	
-//	public Carta[] getMaoj2() {
-//		Carta[] maoJ1= new Carta[3];
-//		jogador2.mao.getManeta();
-//		return maoJ1;
-//	}
-//	public int getNumeroJogadoresAtivos() {
-//	int cont = 0;
-//	for (Jogador player : jogadores) {
-//		if (!player.isParado())
-//			cont++;
-//	}
-//	return cont;
-//}
-//
-//public void setTodosJogadoresAtivos() {
-//
-//	for (Jogador j : this.jogadores) {
-//		j.setAtivo();
-//	}
-//}
+
 }
