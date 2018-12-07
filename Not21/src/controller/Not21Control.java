@@ -127,7 +127,12 @@ public class Not21Control {
 	
 	
 	
-	
+	public void sincronizaMesa() {
+		atualizaMaoJ1();
+		atualizaMaoJ2();
+		atualizaPontosJ1();
+		atualizaPontosJ2();
+	}
 	
 	public void sair() {
 		System.exit(0);
