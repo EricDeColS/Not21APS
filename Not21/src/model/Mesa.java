@@ -83,6 +83,7 @@ public class Mesa implements Jogada {
 			getCartaDoBaralho(jogador2);
 	}
 
+	
 	public void maximoCincoJogadas(Jogador jogador) {
 		if (jogador.getnRodads() > 4) {
 			jogador.setParado();
