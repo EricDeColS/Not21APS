@@ -42,7 +42,7 @@ public class Not21Control {
 			interfaceNot21.setNomeJogador2(nomeAdversario);
 
 			JOptionPane.showMessageDialog(interfaceNot21, "Voc� come�a jogando.");
-			habilitaBotoes();
+		//	habilitaBotoes();
 		} else {
 			mesa.criaJogador1(nomeAdversario);
 			mesa.criaJogador2(idJogador);
@@ -50,15 +50,11 @@ public class Not21Control {
 			interfaceNot21.setNomeJogador1(nomeAdversario);
 			interfaceNot21.setNomeJogador2(idJogador);
 
-			desabilitaBotoes();
+		//	desabilitaBotoes();
 			JOptionPane.showMessageDialog(interfaceNot21, "O advers�rio come�a jogando.");
 		}
 
 		mesa.setEmAndamento();
-	}
-
-	public void receberJogada(Estado estado) {
-		System.out.println("Recebendo jogada");
 	}
 
 	public static void main(String[] args) {
@@ -144,22 +140,35 @@ public class Not21Control {
 
 	public void jogada(int i) {
 		Jogador jogador = mesa.getJogador(idJogador);
-		if (i == 1) {
+		if (i == 0) {
 			if (jogador.getNome() == mesa.getJogadorAtual().getNome()) {
 				this.mesa.getCartaDoBaralho(jogador);
 				jogador.distanciaMult();
-				Estado estado = new Estado(this.mesa);
 				sincronizaMesa();
 				mesa.passaVez();
+				Estado estado = new Estado(this.mesa);
 				atorRede.enviarJogada(estado);
 
 			} else {
 				JOptionPane.showMessageDialog(interfaceNot21, "Não é a sua vez.");
 			}
 
-		} else if (i==1) {
-			jogador.getNome() == mesa.getJogadorAtual().getNome()
+		} else if (i == 1) {
+			if (jogador.getNome() == mesa.getJogadorAtual().getNome()) {
+				jogador.setParado();
+				mesa.passaVez();
+				Estado estado = new Estado(this.mesa);
+				atorRede.enviarJogada(estado);
+			} else {
+				JOptionPane.showMessageDialog(interfaceNot21, "Não é a sua vez.");
+			}
 		}
+		JOptionPane.showMessageDialog(interfaceNot21, "Something's wrong charlie.");
 	}
-
+	
+	public void receberJogada(Estado estado) {
+		
+	}
+	
+	
 }
