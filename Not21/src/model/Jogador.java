@@ -7,6 +7,11 @@ import br.ufsc.inf.leobr.cliente.Jogada;
 
 public class Jogador implements Jogada{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8368929923312617274L;
+
 	protected String nome;
 
 	protected int numero;

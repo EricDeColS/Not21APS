@@ -10,10 +10,15 @@ import br.ufsc.inf.leobr.cliente.Jogada;
 
 public class Mesa implements Jogada {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5437858920975211579L;
 	private Jogador jogador1;
 	private Jogador jogador2;
 	private Baralho baralho;
 	private boolean partidaEmAndamento;
+	private Jogador vencedor = null;
 
 	private Jogador jogadorAtual;
 
@@ -78,7 +83,7 @@ public class Mesa implements Jogada {
 //			getCartaDoBaralho();
 //			getCartaDoBaralho();
 //			
-//			passaIndependente();
+//			
 //		}
 //
 //	}
@@ -88,120 +93,117 @@ public class Mesa implements Jogada {
 			jogador.setParado();
 		}
 	}
-//	public Jogador passaIndependente() {
-//		if (this.jogadorAtual == jogadores.get(0)) {
-//			jogadorAtual = jogadores.get(1);
-//			
-//		}
-//		else if (this.jogadorAtual == jogadores.get(1)) {
-//			jogadorAtual = jogadores.get(0);
-//		}
-//		return jogadorAtual;
-//	}
-//	public Jogador getJogadorAtual() {
-//		return this.jogadorAtual;
-//	}
-//	public Jogador setPrimeiroJogadorAtual() {
-//		if (this.jogadorAtual == null)
-//			this.jogadorAtual = jogadores.get(0);
-//		return this.jogadorAtual;
-//	}
+	public Jogador passaVez() {
+		if (this.jogadorAtual == jogador1) {
+			jogadorAtual = jogador2;
+			
+		}
+		else if (this.jogadorAtual == jogador2) {
+			jogadorAtual = jogador1;
+		}
+		return jogadorAtual;
+	}
+	public Jogador getJogadorAtual() {
+		return this.jogadorAtual;
+	}
 
-//	public void avaliaVencedor(List<Jogador> jogadores) {
-//		int j1 = jogadores.get(0).distanciaMult();
-//		int j2 = jogadores.get(1).distanciaMult();
-//
-//		if (j1 != 0 && j2 != 0) {
-//
-//			if (j1 < j2) {
-//				setVencedor(jogadores.get(0));
-//				JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogadores.get(0).getNome()));
-//			} else if (j1 == j2) {
-//				if (jogadores.get(0).getValorDaMao() > jogadores.get(1).getValorDaMao()) {
-//					setVencedor(jogadores.get(0));
-//					JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogadores.get(0).getNome()));
-//				} else {
-//					setVencedor(jogadores.get(1));
-//					JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogadores.get(1).getNome()));
-//				}
-//			} else {
-//				setVencedor(jogadores.get(1));
-//				JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogadores.get(1).getNome()));
-//			}
-//
-//		} else if (j1 == 0 && j2 != 0) {
-//			setVencedor(jogadores.get(1));
-//			JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogadores.get(1).getNome()));
-//		} else if (j1 != 0 && j2 == 0) {
-//			setVencedor(jogadores.get(0));
-//			JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogadores.get(0).getNome()));
-//
-//		} else {
-//			JOptionPane.showMessageDialog(null, "Algo deu errado");
-//		}
-//	}
 
-//	public boolean condicaoVitoria() {
-//		int pJ1 = jogadores.get(0).getPediu();
-//		boolean j1Parado = jogadores.get(0).isParado();
-//		int pJ2 = jogadores.get(1).getPediu();
-//		boolean j2Parado = jogadores.get(1).isParado();
-//		if (pJ1 >= 5 && pJ2 >= 5 || pJ1 >= 5 && j2Parado == true || j1Parado == true && pJ2 >= 5
-//				|| j1Parado == true && j2Parado == true) {
-//			avaliaVencedor(jogadores);
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
-//
-//	public int getNumeroJogadoresAtivos() {
-//		int cont = 0;
-//		for (Jogador player : jogadores) {
-//			if (!player.isParado())
-//				cont++;
-//		}
-//		return cont;
-//	}
-//
-//	public void setTodosJogadoresAtivos() {
-//
-//		for (Jogador j : this.jogadores) {
-//			j.setAtivo();
-//		}
-//	}
-//
-//	public void limpaJogadores() {
-//		this.jogadores.clear();
-//	}
+	public void avaliaVencedor() {
+		int j1 = jogador1.distanciaMult();
+		int j2 = jogador2.distanciaMult();
 
-//	public String mostraGanhador() {
-//		return getVencedor().getNome();
-//	}
+		if (j1 != 0 && j2 != 0) {
 
-	public void setEmAndamento(boolean b) {
-		// TODO Auto-generated method stub
+			if (j1 < j2) {
+				setVencedor(jogador1);
+				JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador1.getNome()));
+			} else if (j1 == j2) {
+				if (jogador1.getValorDaMao() > jogador2.getValorDaMao()) {
+					setVencedor(jogador1);
+					JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador1.getNome()));
+				} else {
+					setVencedor(jogador2);
+					JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador2.getNome()));
+				}
+			} else {
+				setVencedor(jogador2);
+				JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador2.getNome()));
+			}
 
+		} else if (j1 == 0 && j2 != 0) {
+			setVencedor(jogador2);
+			JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador2.getNome()));
+		} else if (j1 != 0 && j2 == 0) {
+			setVencedor(jogador1);
+			JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador1.getNome()));
+
+		} else {
+			JOptionPane.showMessageDialog(null, "Algo deu errado");
+		}
+	}
+
+	private void setVencedor(Jogador jogador) {
+		this.vencedor = jogador;
+	}
+
+	private Jogador jogadorVencedor() {
+		return this.vencedor;
 	}
 	
-	/*public void passaVez(Jogador jogador) {
-		if (jogadores.get(0) == jogador) {
-			jogadorAtual = jogadores.get(1);
-		}
-		else if (jogadores.get(1) == jogador) {
-			jogadorAtual = jogadores.get(0);
-		}
-	}*/
 	
+	public boolean condicaoVitoria() {
+		int pJ1 = jogador1.getPediu();
+		boolean j1Parado = jogador1.isParado();
+		int pJ2 = jogador2.getPediu();
+		boolean j2Parado = jogador2.isParado();
+		
+		if (pJ1 >= 5 && pJ2 >= 5 || pJ1 >= 5 && j2Parado == true || j1Parado == true && pJ2 >= 5
+				|| j1Parado == true && j2Parado == true) {
+			avaliaVencedor();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+	public String getNomeGanhador() {
+		return jogadorVencedor().getNome();
+	}
+
+	public void setEmAndamento(boolean b) {
+		partidaEmAndamento = b;
+	}
+	
+//	public Jogador setPrimeiroJogadorAtual() {
+//	if (this.jogadorAtual == null)
+//		this.jogadorAtual = jogador1;
+//	return this.jogadorAtual;
+//}	
 //	public Carta[] getMaoj1() {
 //		Carta[] maoJ1= new Carta[3];
-//		jogadores.get(0).mao.getManeta();
+//		jogador1.mao.getManeta();
 //		return maoJ1;
 //	}
 //	
 //	public Carta[] getMaoj2() {
 //		Carta[] maoJ1= new Carta[3];
-//		jogadores.get(1).mao.getManeta();
+//		jogador2.mao.getManeta();
 //		return maoJ1;
 //	}
+//	public int getNumeroJogadoresAtivos() {
+//	int cont = 0;
+//	for (Jogador player : jogadores) {
+//		if (!player.isParado())
+//			cont++;
+//	}
+//	return cont;
+//}
+//
+//public void setTodosJogadoresAtivos() {
+//
+//	for (Jogador j : this.jogadores) {
+//		j.setAtivo();
+//	}
+//}
 }

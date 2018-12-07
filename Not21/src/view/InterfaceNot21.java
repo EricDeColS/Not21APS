@@ -463,19 +463,5 @@ public class InterfaceNot21 extends JFrame {
 				+ "os jogadores param � determinado um vencedor\n"
 				+ "No caso de um empate o resultado ser� decidido verificando quem possui\n" + "a m�o de maior valor.";
 	}
-//
-//	public void pegarCartaAction() {
-//		if (JOGO_EM_REDE)
-//			enviaJogadaRede(JogadaN21.PEDIR);
-//
-//		this.controle.procederLance(JogadaN21.PEDIR);
-//	}
-//
-//	public void passarAVezAction() {
-//		if (JOGO_EM_REDE)
-//			enviaJogadaRede(JogadaN21.PARAR);
-//
-//		this.controle.procederLance(JogadaN21.PARAR);
-//	}
 
 }

@@ -88,11 +88,7 @@ public class Not21Control {
 		
 	}
 
-	public void sincronizaMesa(Mesa mesa) {
-		
-		
-	}
-
+	
 	public void atualizaMaoJ1() {
 		Carta[] aux =  mesa.getJogador1().getMan();
 		String[] mao = new String[3];
