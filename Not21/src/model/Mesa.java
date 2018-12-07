@@ -167,8 +167,11 @@ public class Mesa implements Jogada {
 		return jogadorVencedor().getNome();
 	}
 
-	public void setEmAndamento(boolean b) {
-		partidaEmAndamento = b;
+	public void setEmAndamento() {
+		partidaEmAndamento = true;
+	}
+	public void setPartidaParada() {
+		partidaEmAndamento = false;
 	}
 	
 //	public Jogador setPrimeiroJogadorAtual() {

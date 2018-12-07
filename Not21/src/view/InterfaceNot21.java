@@ -132,7 +132,7 @@ public class InterfaceNot21 extends JFrame {
 	private JLabel lbDesconectar;
 	private JLabel lbConectar;
 	private JLabel lbIiciar;
-	private JButton btnRegas;
+	private JButton btnRegras;
 	private JButton btnNovaMao;
 	private JButton btnParar;
 	private JLabel lblValorDaMo; 
@@ -320,50 +320,50 @@ public class InterfaceNot21 extends JFrame {
 		btnParar.setFont(new Font("Agency FB", Font.PLAIN, 18));
 
 		lblValorDaMo = new JLabel("Valor da M\u00E3o");
-		lblValorDaMo.setFont(new Font("Agency FB", Font.PLAIN, 22));
+		lblValorDaMo.setFont(new Font("Agency FB", Font.PLAIN, 16));
 		lblValorDaMo.setForeground(Color.WHITE);
 		lblValorDaMo.setBounds(10, 382, 113, 40);
 		contentPane.add(lblValorDaMo);
 
 		lblDistanciaDoMultiplo = new JLabel("Distancia do Multiplo");
-		lblDistanciaDoMultiplo.setFont(new Font("Agency FB", Font.PLAIN, 22));
+		lblDistanciaDoMultiplo.setFont(new Font("Agency FB", Font.PLAIN, 16));
 		lblDistanciaDoMultiplo.setForeground(Color.WHITE);
 		lblDistanciaDoMultiplo.setBounds(10, 416, 157, 40);
 		contentPane.add(lblDistanciaDoMultiplo);
 
 		JLabel label_2 = new JLabel("Valor da M\u00E3o");
 		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Agency FB", Font.PLAIN, 22));
+		label_2.setFont(new Font("Agency FB", Font.PLAIN, 16));
 		label_2.setBounds(898, 394, 113, 40);
 		contentPane.add(label_2);
 
 		JLabel label_3 = new JLabel("Distancia do Multiplo");
 		label_3.setForeground(Color.WHITE);
-		label_3.setFont(new Font("Agency FB", Font.PLAIN, 22));
+		label_3.setFont(new Font("Agency FB", Font.PLAIN, 16));
 		label_3.setBounds(898, 428, 171, 40);
 		contentPane.add(label_3);
 
 		lblValMaoJ1 = new JLabel("");
-		lblValMaoJ1.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lblValMaoJ1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblValMaoJ1.setForeground(Color.WHITE);
 		lblValMaoJ1.setBounds(117, 394, 46, 23);
 		contentPane.add(lblValMaoJ1);
 
 		lblValMaoJ2 = new JLabel("");
 		lblValMaoJ2.setForeground(Color.WHITE);
-		lblValMaoJ2.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lblValMaoJ2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblValMaoJ2.setBounds(1009, 404, 46, 23);
 		contentPane.add(lblValMaoJ2);
 
 		distMultiJ2 = new JLabel("");
 		distMultiJ2.setForeground(Color.WHITE);
-		distMultiJ2.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		distMultiJ2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		distMultiJ2.setBounds(1057, 441, 46, 23);
 		contentPane.add(distMultiJ2);
 
 		distMultiJ1 = new JLabel("");
 		distMultiJ1.setForeground(Color.WHITE);
-		distMultiJ1.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		distMultiJ1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		distMultiJ1.setBounds(160, 428, 46, 23);
 		contentPane.add(distMultiJ1);
 
@@ -378,13 +378,13 @@ public class InterfaceNot21 extends JFrame {
 		label.setIcon(new ImageIcon("imagens/principal1.png"));
 		label_1.setIcon(new ImageIcon("imagens/principal.png"));
 
-		btnRegas = new JButton("Regas");
-		btnRegas.setBorder(null);
-		btnRegas.setForeground(Color.WHITE);
-		btnRegas.setFont(new Font("Agency FB", Font.PLAIN, 18));
-		btnRegas.setBackground(new Color(34, 139, 34));
-		btnRegas.setBounds(10, 602, 74, 48);
-		contentPane.add(btnRegas);
+		btnRegras = new JButton("Regras");
+		btnRegras.setBorder(null);
+		btnRegras.setForeground(Color.WHITE);
+		btnRegras.setFont(new Font("Agency FB", Font.PLAIN, 18));
+		btnRegras.setBackground(new Color(34, 139, 34));
+		btnRegras.setBounds(10, 602, 74, 48);
+		contentPane.add(btnRegras);
 		
 	}
 
@@ -434,18 +434,6 @@ public class InterfaceNot21 extends JFrame {
 //
 
 
-//	public void sincronizaMesa(Mesa mesa) {
-//		contentPane.removeAll();
-//		thisLayout.show(getContentPane(), PAINEL_JOGO);
-//		for (Jogador jogador : mesa.getJogadores()) {
-//			criar(jogador);
-//		}
-//		contentPane.repaint();
-//		System.gc();
-//		habilitaDesabilitaBotoes();
-//		
-//	}
-//
 
 
 	public void mostraRegras() {

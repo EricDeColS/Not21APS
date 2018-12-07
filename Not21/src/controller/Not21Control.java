@@ -52,7 +52,7 @@ public class Not21Control {
 			JOptionPane.showMessageDialog(interfaceNot21, "O advers�rio come�a jogando.");
 		}
 		
-		mesa.setEmAndamento(true);		
+		mesa.setEmAndamento();		
 	}
 	
 	public void receberJogada(Estado estado) {
