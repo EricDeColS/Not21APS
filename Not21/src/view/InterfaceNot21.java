@@ -88,7 +88,7 @@ public class InterfaceNot21 extends JFrame {
     
     
     
-    /*** PEDE NOVA MAO ***/
+    /*** NOVO JOGO ***/
     public class NovoJogoListener implements MouseListener {
     	private Not21Control control;
         

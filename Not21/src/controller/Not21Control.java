@@ -46,7 +46,7 @@ public class Not21Control {
 			interfaceNot21.setNomeJogador1(nomeAdversario);
 			interfaceNot21.setNomeJogador2(idJogador);
 
-		//	desabilitaBotoes();
+			// desabilitaBotoes();
 			JOptionPane.showMessageDialog(interfaceNot21, "O advers�rio come�a jogando.");
 		}
 
@@ -94,7 +94,7 @@ public class Not21Control {
 	}
 
 	public void atualizaMaoJ2() {
-
+		if(mesa.getJogador2().getPediu()>=1) {
 		Carta[] aux = mesa.getJogador2().getMan();
 		String[] mao = new String[3];
 		mao[0] = aux[0].toString();
@@ -102,7 +102,7 @@ public class Not21Control {
 		mao[2] = aux[2].toString();
 
 		interfaceNot21.setMaoJ2Panel(mao);
-
+		}
 	}
 
 	public void atualizaPontosJ1() {
@@ -117,8 +117,9 @@ public class Not21Control {
 
 	public void sincronizaMesa() {
 		atualizaMaoJ1();
-		atualizaMaoJ2();
 		atualizaPontosJ1();
+		atualizaMaoJ2();
+
 		atualizaPontosJ2();
 	}
 
@@ -144,7 +145,7 @@ public class Not21Control {
 				mesa.passaVez();
 				Estado estado = new Estado(this.mesa);
 				atorRede.enviarJogada(estado);
-
+				JOptionPane.showMessageDialog(interfaceNot21, "voce pediu cartas com sucesso e enviou a jogada.");
 			} else {
 				JOptionPane.showMessageDialog(interfaceNot21, "Não é a sua vez.");
 			}
@@ -154,19 +155,24 @@ public class Not21Control {
 				jogador.setParado();
 				mesa.passaVez();
 				Estado estado = new Estado(this.mesa);
+				mesa.condicaoVitoria();
 				atorRede.enviarJogada(estado);
+				JOptionPane.showMessageDialog(interfaceNot21, "Voce parou e mandou a jogada.");
 			} else {
 				JOptionPane.showMessageDialog(interfaceNot21, "Não é a sua vez.");
 			}
 		}
-		JOptionPane.showMessageDialog(interfaceNot21, "Something's wrong charlie.");
+		// JOptionPane.showMessageDialog(interfaceNot21, "Something's wrong charlie.");
 	}
-	
+
 	public void receberJogada(Estado estado) {
-		mesa = estado.getMesa();
+
+		Mesa mesa = estado.getMesa();
+		mesa.condicaoVitoria();
+		this.mesa = mesa;
 		sincronizaMesa();
 		habilitaBotoes();
+		JOptionPane.showMessageDialog(interfaceNot21, "Pode jogar");
 	}
-	
-	
+
 }
