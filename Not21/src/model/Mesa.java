@@ -107,29 +107,22 @@ public class Mesa implements Jogada {
 
 			if (j1 < j2) {
 				setVencedor(jogador1);
-				JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador1.getNome()));
 			} else if (j1 == j2) {
 				if (jogador1.getValorDaMao() > jogador2.getValorDaMao()) {
 					setVencedor(jogador1);
-					JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador1.getNome()));
 				} else {
 					setVencedor(jogador2);
-					JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador2.getNome()));
 				}
 			} else {
 				setVencedor(jogador2);
-				JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador2.getNome()));
 			}
 
 		} else if (j1 == 0 && j2 != 0) {
 			setVencedor(jogador2);
-			JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador2.getNome()));
 		} else if (j1 != 0 && j2 == 0) {
 			setVencedor(jogador1);
-			JOptionPane.showMessageDialog(null, String.format("O 2%d ganhou", jogador1.getNome()));
 
 		} else {
-			JOptionPane.showMessageDialog(null, "Algo deu errado");
 		}
 	}
 
