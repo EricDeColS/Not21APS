@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -32,6 +33,8 @@ public class InterfaceNot21 extends JFrame {
 		lbIiciar.addMouseListener(new NovoJogoListener(control));
 		btnNovaMao.addMouseListener(new NovaMaoListener(control));
 		btnParar.addMouseListener(new PararListener(control));
+		btnRegras.addMouseListener(new RegrasListener());
+		
 		
 	}
 	
@@ -62,6 +65,28 @@ public class InterfaceNot21 extends JFrame {
     
     
     
+    /*** REGRAS DO JOGO ***/
+    public class RegrasListener implements MouseListener {
+    	private Not21Control control;
+        
+        public RegrasListener() {
+            mostraRegras();
+        }
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {	
+	    	control.desconectar();
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+    }
     
     /*** DESCONECTA ***/
     public class DesconexaoListener implements MouseListener {
@@ -516,7 +541,10 @@ public class InterfaceNot21 extends JFrame {
 		btnNovaMao.setText("");
 	}
 
-	
+	public void desabilitaPedir() {
+		btnNovaMao.setEnabled(false);
+		btnNovaMao.setText("");
+	}
 	
 	public void mostraRegras() {
 
@@ -532,6 +560,7 @@ public class InterfaceNot21 extends JFrame {
 				+ "seu oponente sim, respeitando o limite m�ximo de 5 saques. Quando todos\n"
 				+ "os jogadores param � determinado um vencedor\n"
 				+ "No caso de um empate o resultado ser� decidido verificando quem possui\n" + "a m�o de maior valor.";
+		JOptionPane.showMessageDialog(null, regras);
 	}
 
 }

@@ -172,14 +172,16 @@ public class Not21Control {
 	public void receberJogada(Estado estado) {
 		if (mesa.condicaoVitoria())
 			JOptionPane.showMessageDialog(interfaceNot21, "O jogador " + mesa.getNomeGanhador() + " ganhou!");
+		
+		
 		Mesa mesa = estado.getMesa();
-		mesa.condicaoVitoria();
 		this.mesa = mesa;
 		sincronizaMesa();
+		
 		Jogador jogador = mesa.getJogador(idJogador);
 			if (jogador.getNome() == mesa.getJogador(idJogador).getNome() && jogador.isParado()) {
-			mesa.passaVez();
-			;
+				//mesa.passaVez();
+				interfaceNot21.desabilitaPedir();
 		}else {
 			habilitaBotoes();
 			if (mesa.condicaoVitoria())
