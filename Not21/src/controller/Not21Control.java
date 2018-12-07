@@ -1,13 +1,9 @@
 package controller;
 
-import java.awt.Component;
-import java.util.List;
-
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
 import model.Carta;
-import model.JogadaN21;
 import model.Jogador;
 import model.Mesa;
 import net.AtorNetGames;
@@ -42,7 +38,7 @@ public class Not21Control {
 			interfaceNot21.setNomeJogador2(nomeAdversario);
 
 			JOptionPane.showMessageDialog(interfaceNot21, "Voc� come�a jogando.");
-		//	habilitaBotoes();
+			habilitaBotoes();
 		} else {
 			mesa.criaJogador1(nomeAdversario);
 			mesa.criaJogador2(idJogador);
@@ -167,7 +163,9 @@ public class Not21Control {
 	}
 	
 	public void receberJogada(Estado estado) {
-		
+		mesa = estado.getMesa();
+		sincronizaMesa();
+		habilitaBotoes();
 	}
 	
 	
