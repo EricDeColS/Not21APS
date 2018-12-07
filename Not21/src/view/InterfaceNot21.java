@@ -29,18 +29,18 @@ public class InterfaceNot21 extends JFrame {
 		
 		lbConectar.addMouseListener(new ConexaoListener(control));
 		lbDesconectar.addMouseListener(new DesconexaoListener(control));
-		lbReiniciar.addMouseListener(new ReiniciarListener(control));
+		lbRegras.addMouseListener(new ReiniciarListener(control));
 		lbIiciar.addMouseListener(new NovoJogoListener(control));
 		btnNovaMao.addMouseListener(new NovaMaoListener(control));
 		btnParar.addMouseListener(new PararListener(control));
-		btnRegras.addMouseListener(new RegrasListener());
-		
 		
 	}
 	
 	
+		
 	
-	/*** CONECTAR ***/
+	
+	/* CONECTAR */
     public class ConexaoListener implements MouseListener {
         private Not21Control control;
         
@@ -65,30 +65,8 @@ public class InterfaceNot21 extends JFrame {
     
     
     
-    /*** REGRAS DO JOGO ***/
-    public class RegrasListener implements MouseListener {
-    	private Not21Control control;
-        
-        public RegrasListener() {
-            mostraRegras();
-        }
-
-		@Override
-		public void mouseClicked(MouseEvent arg0) {	
-	    	control.desconectar();
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent arg0) {}
-		@Override
-		public void mouseExited(MouseEvent arg0) {}
-		@Override
-		public void mousePressed(MouseEvent arg0) {}
-		@Override
-		public void mouseReleased(MouseEvent arg0) {}
-    }
     
-    /*** DESCONECTA ***/
+    /* DESCONECTA */
     public class DesconexaoListener implements MouseListener {
     	private Not21Control control;
         
@@ -113,7 +91,7 @@ public class InterfaceNot21 extends JFrame {
     
     
     
-    /*** NOVO JOGO ***/
+    /* NOVO JOGO */
     public class NovoJogoListener implements MouseListener {
     	private Not21Control control;
         
@@ -139,7 +117,7 @@ public class InterfaceNot21 extends JFrame {
     
     
     
-    /*** REINICIA JOGO ***/
+    /* REINICIA JOGO */
     public class ReiniciarListener implements MouseListener {
     	private Not21Control control;
         
@@ -148,7 +126,7 @@ public class InterfaceNot21 extends JFrame {
         }
         
 		public void mouseClicked(MouseEvent arg0) {	
-	    	control.reiniciar();
+			mostraRegras();
 		}
 
 		@Override
@@ -165,7 +143,7 @@ public class InterfaceNot21 extends JFrame {
     
     
     
-    /*** PEDE NOVA MAO ***/
+    /* PEDE NOVA MAO */
     public class NovaMaoListener implements MouseListener {
         private Not21Control control;
         
@@ -188,7 +166,7 @@ public class InterfaceNot21 extends JFrame {
 		public void mouseReleased(MouseEvent arg0) {}
     }
     
-    /*** PARAR ***/
+    /* PARAR */
     public class PararListener implements MouseListener {
         private Not21Control control;
         
@@ -223,11 +201,10 @@ public class InterfaceNot21 extends JFrame {
 	private JLabel lblC3J2;
 	private JLabel lblJogador;
 	private JLabel lblJogador_1;
-	private JLabel lbReiniciar;
+	private JLabel lbRegras;
 	private JLabel lbDesconectar;
 	private JLabel lbConectar;
 	private JLabel lbIiciar;
-	private JButton btnRegras;
 	private JButton btnNovaMao;
 	private JButton btnParar;
 	private JLabel lblValorDaMo; 
@@ -248,12 +225,12 @@ public class InterfaceNot21 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		lbReiniciar = new JLabel("Reiniciar");	
-		lbReiniciar.setHorizontalAlignment(SwingConstants.CENTER);
-		lbReiniciar.setForeground(Color.WHITE);
-		lbReiniciar.setFont(new Font("Agency FB", Font.PLAIN, 15));
-		lbReiniciar.setBounds(559, 555, 63, 84);
-		contentPane.add(lbReiniciar);
+		lbRegras = new JLabel("Regras");	
+		lbRegras.setHorizontalAlignment(SwingConstants.CENTER);
+		lbRegras.setForeground(Color.WHITE);
+		lbRegras.setFont(new Font("Agency FB", Font.PLAIN, 15));
+		lbRegras.setBounds(559, 555, 63, 84);
+		contentPane.add(lbRegras);
 
 		lbDesconectar = new JLabel("Desconectar");		
 		lbDesconectar.setHorizontalAlignment(SwingConstants.CENTER);
@@ -391,7 +368,7 @@ public class InterfaceNot21 extends JFrame {
 
 		
 		
-		/**** BOTAO PEDE NOVA MAO ****/
+		/** BOTAO PEDE NOVA MAO **/
 		
 		
 		btnNovaMao = new JButton("Nova Mão");
@@ -403,7 +380,7 @@ public class InterfaceNot21 extends JFrame {
 
 		
 		
-		/**** BOTAO PARA DE JOGAR ****/
+		/** BOTAO PARA DE JOGAR **/
 		
 		
 		
@@ -472,23 +449,15 @@ public class InterfaceNot21 extends JFrame {
 
 		label.setIcon(new ImageIcon("imagens/principal1.png"));
 		label_1.setIcon(new ImageIcon("imagens/principal.png"));
-
-		btnRegras = new JButton("Regras");
-		btnRegras.setBorder(null);
-		btnRegras.setForeground(Color.WHITE);
-		btnRegras.setFont(new Font("Agency FB", Font.PLAIN, 18));
-		btnRegras.setBackground(new Color(34, 139, 34));
-		btnRegras.setBounds(10, 602, 74, 48);
-		contentPane.add(btnRegras);
 		
 	}
 
 	public void setNomeJogador1(String nome) {
-		lblJogador.setText("Jogador " + nome);
+		lblJogador.setText(nome);
 	}
 
 	public void setNomeJogador2(String nome) {
-		lblJogador_1.setText("Jogador " + nome);
+		lblJogador_1.setText(nome);
 	}
 	
 	public void setValorMaoJ1(int valor) {
@@ -531,7 +500,7 @@ public class InterfaceNot21 extends JFrame {
 		btnParar.setEnabled(true);
 		btnParar.setText("Parar");
 		btnNovaMao.setEnabled(true);
-		btnNovaMao.setText("Nova Mão");
+		btnNovaMao.setText("Nova MÃ£o");
 	}
 	
 	public void desabilitaBotoes() {
@@ -549,17 +518,17 @@ public class InterfaceNot21 extends JFrame {
 	public void mostraRegras() {
 
 		String regras = ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not 21:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"
-				+ "� um jogo de cartas onde vencedor � definido quando aquele de entre\n"
-				+ "2 jogadores,mais se aproximarem de um m�ltiplo de 21 sem atingir o\n"
-				+ "n�mero e em at� 5 compras de cartas.\n"
+				+ "É um jogo de cartas onde vencedor É definido quando aquele de entre\n"
+				+ "2 jogadores,mais se aproximarem de um múltiplo de 21 sem atingir o\n"
+				+ "número e em até 5 compras de cartas.\n"
 				+ "Um baralho de 4 naipes contendo 52 cartas, tendo cada carta do naipe\n"
-				+ "um valor de 1 a 13 � embaralhado e 3 cartas s�o distribu�das para cada\n"
-				+ "jogador. As duas primeiras cartas sacadas somar�o seus valores,\n"
-				+ "enquanto a terceira diminuir� seu valor. Se o valor resultante desta\n"
-				+ "equa��o for satisfat�rio o jogador poder� n�o efetuar mais saques mas\n"
-				+ "seu oponente sim, respeitando o limite m�ximo de 5 saques. Quando todos\n"
-				+ "os jogadores param � determinado um vencedor\n"
-				+ "No caso de um empate o resultado ser� decidido verificando quem possui\n" + "a m�o de maior valor.";
+				+ "um valor de 1 a 10 é embaralhado e 3 cartas são distribuídas para cada\n"
+				+ "jogador. As duas primeiras cartas sacadas somarï¿½o seus valores,\n"
+				+ "enquanto a terceira diminuirá seu valor. Se o valor resultante desta\n"
+				+ "equação for satisfatório o jogador não poderá efetuar mais saques mas\n"
+				+ "seu oponente sim, respeitando o limite máximo de 5 saques. Quando todos\n"
+				+ "os jogadores param será determinado um vencedor\n"
+				+ "No caso de um empate o resultado será decidido verificando quem possui\n" + "a mão de maior valor.";
 		JOptionPane.showMessageDialog(null, regras);
 	}
 

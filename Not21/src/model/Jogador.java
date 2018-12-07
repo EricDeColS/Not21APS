@@ -101,6 +101,7 @@ public class Jogador implements Jogada {
 		} else {
 			result = aux;
 		}
+		if (result == 21) return 0;
 		return result;
 	}
 
