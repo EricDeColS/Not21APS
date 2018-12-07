@@ -65,6 +65,7 @@ public class Mesa implements Jogada {
 		Carta carta = getBaralho().getCartaTopo(); 
 		jogador.mao.adicionaCarta(carta);
 		}
+		jogador.jogadorPediu();
 	}
 	
 	
@@ -75,8 +76,6 @@ public class Mesa implements Jogada {
 
 
 
-
-
 	public void distribuiCartas() {
 
 			getCartaDoBaralho(jogador1);
@@ -84,11 +83,7 @@ public class Mesa implements Jogada {
 	}
 
 	
-	public void maximoCincoJogadas(Jogador jogador) {
-		if (jogador.getnRodads() > 4) {
-			jogador.setParado();
-		}
-	}
+	
 	public Jogador passaVez() {
 		if (this.jogadorAtual == jogador1) {
 			jogadorAtual = jogador2;

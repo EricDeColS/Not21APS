@@ -30,8 +30,14 @@ public class InterfaceNot21 extends JFrame {
 		lbDesconectar.addMouseListener(new DesconexaoListener(control));
 		lbReiniciar.addMouseListener(new ReiniciarListener(control));
 		lbIiciar.addMouseListener(new NovoJogoListener(control));
+		btnNovaMao.addMouseListener(new NovaMaoListener(control));
+		btnParar.addMouseListener(new PararListener(control));
+		
 	}
 	
+	
+	
+	/*** CONECTAR ***/
     public class ConexaoListener implements MouseListener {
         private Not21Control control;
         
@@ -54,6 +60,10 @@ public class InterfaceNot21 extends JFrame {
 		public void mouseReleased(MouseEvent arg0) {}
     }
     
+    
+    
+    
+    /*** DESCONECTA ***/
     public class DesconexaoListener implements MouseListener {
     	private Not21Control control;
         
@@ -76,6 +86,9 @@ public class InterfaceNot21 extends JFrame {
 		public void mouseReleased(MouseEvent arg0) {}
     }
     
+    
+    
+    /*** PEDE NOVA MAO ***/
     public class NovoJogoListener implements MouseListener {
     	private Not21Control control;
         
@@ -97,6 +110,11 @@ public class InterfaceNot21 extends JFrame {
 		public void mouseReleased(MouseEvent arg0) {}
      }
     
+    
+    
+    
+    
+    /*** REINICIA JOGO ***/
     public class ReiniciarListener implements MouseListener {
     	private Not21Control control;
         
@@ -118,6 +136,58 @@ public class InterfaceNot21 extends JFrame {
 		public void mouseReleased(MouseEvent arg0) {}
     }
 	
+    
+    
+    
+    
+    /*** PEDE NOVA MAO ***/
+    public class NovaMaoListener implements MouseListener {
+        private Not21Control control;
+        
+        public NovaMaoListener(Not21Control control) {
+            this.control = control;
+        }
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+	    	control.jogada(0);			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+    }
+    
+    /*** PARAR ***/
+    public class PararListener implements MouseListener {
+        private Not21Control control;
+        
+        public PararListener(Not21Control control) {
+            this.control = control;
+        }
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+	    	control.jogada(1);			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+    }
+    
+    
+    
 	//private CardLayout thisLayout;
 	private JPanel contentPane;
 	private JLabel lblC1J1;
@@ -296,10 +366,10 @@ public class InterfaceNot21 extends JFrame {
 
 		
 		
-		/**** PEDE NOVA MAO ****/
+		/**** BOTAO PEDE NOVA MAO ****/
 		
 		
-		btnNovaMao = new JButton("Nova M\u00E3o");
+		btnNovaMao = new JButton("Nova Mão");
 		btnNovaMao.setBorder(null);
 		btnNovaMao.setBounds(451, 312, 199, 23);
 		contentPane.add(btnNovaMao);
@@ -308,7 +378,7 @@ public class InterfaceNot21 extends JFrame {
 
 		
 		
-		/**** PARA DE JOGAR ****/
+		/**** BOTAO PARA DE JOGAR ****/
 		
 		
 		
@@ -432,10 +502,23 @@ public class InterfaceNot21 extends JFrame {
 //		btnParar.setEnabled(minhaVez);
 //	}
 //
+	public void habilitaBotoes() {
+		btnParar.setEnabled(true);
+		btnParar.setText("Parar");
+		btnNovaMao.setEnabled(true);
+		btnNovaMao.setText("Nova Mão");
+	}
+	
+	public void desabilitaBotoes() {
+		btnParar.setEnabled(false);
+		btnParar.setText("");
+		btnNovaMao.setEnabled(false);
+		btnNovaMao.setText("");
+	}
 
-
-
-
+	
+	
+	
 	public void mostraRegras() {
 
 		String regras = ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not 21:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"

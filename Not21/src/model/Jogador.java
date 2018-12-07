@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.ufsc.inf.leobr.cliente.Jogada;
 
-public class Jogador implements Jogada{
+public class Jogador implements Jogada {
 
 	/**
 	 * 
@@ -19,13 +19,13 @@ public class Jogador implements Jogada{
 	protected Mao mao;
 
 	protected int nRodads;
-	
+
 	protected int pediu;
-	
+
 	protected boolean parado = false;
 
-	protected boolean comeca =false;
-	
+	protected boolean comeca = false;
+
 	public int getnRodads() {
 		return nRodads;
 	}
@@ -41,11 +41,10 @@ public class Jogador implements Jogada{
 		this.nRodads = 0;
 		this.pediu = 0;
 	}
-	
+
 	public Carta[] getMan() {
 		return mao.getManeta();
 	}
-	
 
 	public void limparMao() {
 		this.mao.limpar();
@@ -58,7 +57,7 @@ public class Jogador implements Jogada{
 	public void setParado() {
 		this.parado = true;
 	}
-	
+
 	public void setAtivo() {
 		this.parado = false;
 	}
@@ -70,19 +69,19 @@ public class Jogador implements Jogada{
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public int getNumero() {
 		return numero;
 	}
 
 	public void addNRodads() {
 		int nRodads = getnRodads();
-		nRodads ++;
-		setnRodads(nRodads);	
+		nRodads++;
+		setnRodads(nRodads);
 	}
-	
-	 public int distanciaMult() {
-		   
+
+	public int distanciaMult() {
+
 		int pontos = this.getValorDaMao();
 		int aux = 0;
 		int temp = 0;
@@ -94,22 +93,26 @@ public class Jogador implements Jogada{
 			if (Math.abs(aux) < temp) {
 				return Math.abs(aux);
 			} else {
-			return temp;
+				return temp;
 			}
 		} else {
 			return 0;
 		}
 	}
-	 
-	 public void jogadorPediu() {
-	 	pediu++;
-	 }
-	 
-	 public int getPediu() {
-	 	return pediu;
-	 }
-	 
-	 public int getValorDaMao() {
+
+	public void jogadorPediu() {
+		pediu++;
+		if (pediu > 4) {
+			setParado();
+		}
+
+	}
+
+	public int getPediu() {
+		return pediu;
+	}
+
+	public int getValorDaMao() {
 		int i = 0;
 		int diminui = 0;
 		int soma = 0;
@@ -132,6 +135,5 @@ public class Jogador implements Jogada{
 
 		return valor;
 	}
-	 	
-}
 
+}
