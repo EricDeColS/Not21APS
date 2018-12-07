@@ -61,8 +61,10 @@ public class Mesa implements Jogada {
 	
 	//	teste para pegar carta do baralho
 	public void getCartaDoBaralho(Jogador jogador) {
+		for(int i=0; i<3; i++) {
 		Carta carta = getBaralho().getCartaTopo(); 
 		jogador.mao.adicionaCarta(carta);
+		}
 	}
 	
 	
@@ -75,18 +77,11 @@ public class Mesa implements Jogada {
 
 
 
-//	public void distribuiCartas() {
-//
-//		for (Jogador j : this.jogadores) {
-//			j.limparMao();
-//			getCartaDoBaralho();
-//			getCartaDoBaralho();
-//			getCartaDoBaralho();
-//			
-//			
-//		}
-//
-//	}
+	public void distribuiCartas() {
+
+			getCartaDoBaralho(jogador1);
+			getCartaDoBaralho(jogador2);
+	}
 
 	public void maximoCincoJogadas(Jogador jogador) {
 		if (jogador.getnRodads() > 4) {
